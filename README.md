@@ -1,4 +1,4 @@
-#MetisWrapper.js
+#Schwing.js
 
 Schwing.js contains an interpreter and environment for a mini-language which can wait for asynchronous function calls to return. Schwing.js can optionally be paired with EfforlessIO -- if it is, it provides synchronous wrappers around EffortlessIO's asynchronous functions.
 
@@ -6,6 +6,7 @@ Schwing.js contains an interpreter and environment for a mini-language which can
 ##Methods
 
 Schwing.js gives users access to three methods:
+
 1. <code>init([code])</code> Resets the Schwing environment, stopping any code that is currently running. Optionally, new code can be loaded in through the <code>code</code> parameter. This code will be run the next time that <code>run</code> is called. This code must be written in the Schwing mini-language, which is described below.
 
 2. <code>connect(callback)</code> Connects to an EIO board. If the connection is successful, runs the callback with no arguments.
@@ -51,8 +52,8 @@ All arithmetic operators are prefix operators.
 * <code>Add x y</code> evaluates to the sum of x and y.
 * <code>Sub x y</code> evaluates to y - x.
 * <code>Mul x y</code> evaluates to x * y.
-* <code>Div x y</code> evaluates to y/x using integer division (result is floored).
-* <code>Mod x y</code> evaluates to y%x.
+* <code>Div x y</code> evaluates to y / x using integer division (result is floored).
+* <code>Mod x y</code> evaluates to y % x.
 
 ###Assignment
 * <code>Set var val</code> gives the variable "var" the value "val". "val" can be a primitive, and expression, or an expression containing another variable. Variables need not be declared before they can be given values.
@@ -78,7 +79,7 @@ All arithmetic operators are prefix operators.
 
 ##Schwing Examples
 The following code will connect to EIO. Once it connects, the code will check every 200 ms to see if the bumper is pushed. If it is, it will turn the LED on. Otherwise, it will turn it off:
-<code>
+<pre>
   connect(function () {
     init("
       While-start (true): 
@@ -93,4 +94,4 @@ The following code will connect to EIO. Once it connects, the code will check ev
     ");
     run();
   });
-</code>
+</pre>
