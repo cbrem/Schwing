@@ -1,31 +1,8 @@
 /*
 TODO:
-  - add function that loads up _io
   - possibly combine _delay and _getAsync into one function
-  - let Alert give variable values
-  - how does evalExpression deal with variables?
   - fix memory leak: note that leak only occurs/has an effect when we're
-    using asynchronous input. also, stat stays at "waiting"
-*/
-
-/*
-Schwing Mini-language:
-  - instructions are passed as a semicolon-seperated string.
-  - all functions/control instructions/other keywords begin with capital
-    letters
-  - variable names must not begin with capital leters
-  - expressions in parentheses will be evaluated first, then used by other
-    expressions
-  - all keywords/variables must be seperated by spaces
-  - While-start <condition> (indicates the start of a while-loop)
-  - While-end (indicates the end of a while loop)
-  - If-start <condition> (indicates the start of an if-statement)
-  - Else-start (indicates start of else block in if statement)
-  - If-end (indicates the end of an if-statement)
-  - Set <var> <val> (create a variable with the specified value)
-  - On <output>, Off <output>, Tog <output> (on/off/toggle given output)
-  - Set <var> (Valof <input>) (sets given var equal to the value of input)
-  - Equal <v1> <v2> (does v1 equal v2?)
+    using asynchronous input.
 */
 
 var _timerLength = 100; //ms
