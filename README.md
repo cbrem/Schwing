@@ -1,6 +1,6 @@
 #Schwing.js
 
-Schwing.js contains an interpreter and environment for a mini-language which can wait for asynchronous function calls to return. Schwing.js can optionally be paired with EfforlessIO -- if it is, it provides synchronous wrappers around EffortlessIO's asynchronous functions.
+Schwing.js contains an interpreter and environment for a mini-language which can wait for asynchronous function calls to return. Schwing.js can optionally be paired with EffortlessIO -- if it is, it provides synchronous wrappers around EffortlessIO's asynchronous functions.
 
 
 ##Methods
