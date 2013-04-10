@@ -1,12 +1,13 @@
 /*
-TODO:
-  - possibly combine _delay and _getAsync into one function
-  - fix memory leak: note that leak only occurs/has an effect when we're
-    using asynchronous input.
-*/
+ * Schwing.js
+ *
+ * An interpreter for a JavaScript-based language which supports delays
+ * and blocking asynchronous calls.
+ */
+
 
 var _timerLength = 100; //ms
-var _asyncLimit = 3;   //cycles until timeout
+var _asyncLimit = 10;   //cycles until timeout
 var _vars;
 var _pc;
 var _code;
@@ -28,10 +29,15 @@ var _keywords = {
       "If-end": true
     },
     "inputs": {
-      "Bumper": true
+      "Bumper": true,
+      "Ultra": true
     },
     "outputs": {
-      "Led": true
+      "Led": true,
+      "Catapult": true,
+      "Claw": true,
+      "Motor0": true,
+      "Motor1": true
     },
     "output": {
       "On": true,
@@ -76,7 +82,7 @@ function _splitLines (rawCode) {
   var filteredCode = "";
   for (var i = 0; i < rawCode.length; i++) {
     var c = rawCode[i];
-    if (c !== "\n" && c !== "\r") filteredCode += c;
+    if (c !== "\n" && c !== "\r" && c !== "\t") filteredCode += c;
   }
 
   var splitCode = [];
@@ -574,6 +580,7 @@ function _execCurrent() {
 //determine whether or not to call next instruction, stop the program, and
 //increment _pc
 function _timer () {
+  console.log("cycled");
   if (!_flags.running) {
     //exit
     console.log("Stopping timer.");
@@ -609,14 +616,16 @@ function _exit (error) {
 
 //fill the _io object with valid inputs and outputs
 function connectPins (eio) {
-  _io["Bumper"] = new DigitalInput(PINB0, eio);
+  /* Outputs */
   _io["Led"] = new DigitalOutput(PINB1, eio);
-  /*
-  _io["claw"] = new DigitalOutput(PINB2, eio);
-  _io["catapult"] = new DigitalOutput(PINB3, eio);
-  _io["motor0"] = new DigitalOutput(PINB4, eio);
-  _io["motor1"] = new DigitalOutput(PINB5, eio);
-  */
+  _io["Motor0"] = new DigitalOutput(PINB2, eio);
+  _io["Motor1"] = new DigitalOutput(PINB3, eio);
+  _io["Claw"] = new DigitalOutput(PINB4, eio);
+  _io["Catapult"] = new DigitalOutput(PINB5, eio);
+
+  /* Inputs */
+  _io["Bumper"] = new DigitalInput(PINB6, eio);
+  _io["Ultra"] = new DigitalInput(PINB7, eio);
 }
 
 //configure the EIO board and enable use of the related methods

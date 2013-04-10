@@ -76,6 +76,13 @@ All arithmetic operators are prefix operators.
   - <code>Bumper</code>
 * Valid outputs (this list will be expanded soon):
   - <code>Led</code>
+  - <code>Catapult</code>
+  - <code>Claw</code>
+  - <code>[Motor0, Motor1]</code>
+    * <code>[Motor0 = 0, Motor1 = 0]</code> will stop robot.
+    * <code>[1, 0]</code> will turn robot left.
+    * <code>[0, 0]</code> will turn robot right.
+    * <code>[0, 0]</code> will drive robot forward.
 
 ##Schwing Examples
 The following code will connect to EIO. Once it connects, the code will check every 200 ms to see if the bumper is pushed. If it is, it will turn the LED on. Otherwise, it will turn it off:
