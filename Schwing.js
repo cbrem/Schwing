@@ -630,6 +630,11 @@ function connectPins (eio) {
 
 //configure the EIO board and enable use of the related methods
 function connect (callback) {
+  if (_flags.usingEio) {
+    //if we are already connected, do not reconnect
+    callback();
+  }
+
   _flags.usingEio = true;
 
   if (_EIO !== undefined) {
